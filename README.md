@@ -1,2 +1,2 @@
-# guicar.github.io
+# Tech blog
 A tech blog.
