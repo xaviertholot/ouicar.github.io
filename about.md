@@ -1,6 +1,7 @@
 ---
 layout: page
-title: About
+# Uncomment the title to activate the about page.
+# title: About
 permalink: /about/
 ---
 
