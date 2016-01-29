@@ -1,2 +1,4 @@
 # Tech blog
-A tech blog.
+> http://ouicar.github.io/
+
+    jekyll serve
