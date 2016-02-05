@@ -10,7 +10,7 @@ title: OuiCar Tech Blog
 email: contact@ouicar.fr
 description: A blog where we talk about the technologies we use at OuiCar.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://www.ouicar.fr/" # the base hostname & protocol for your site
+url: "http://ouicar.github.io/" # the base hostname & protocol for your site
 twitter_username: ouicar
 github_username:  ouicar
 
