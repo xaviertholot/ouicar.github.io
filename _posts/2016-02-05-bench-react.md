@@ -47,10 +47,13 @@ will show two buttons:
 
 ![Performance buttons](../../../assets/2016-02-05-bench-react/performance_buttons.png)
 
-By clicking on *Start* we begin the recording of performance. With *Stop* we display the results:
+With *Start* we start the recording of performance. With *Stop* we display the results:
 
 ![Results](../../../assets/2016-02-05-bench-react/performance_logs.png)
 
-These results are the outputs of `printDOM()`, `printInclusive()`, `printExclusive()` and `printWasted()`. The most important table is the last one: it shows the time wasted by computing a component's DOM which happens to be identical to the previous one. In this example, the text inputs of our forms were unusable due to rendering lags. We understand that the `CarCard` components may be the source of the problem.
+These results are the outputs of `printDOM()`, `printInclusive()`, `printExclusive()` and `printWasted()`. The most important table is the last one: it shows the time wasted by computing a component's DOM which happens to be identical to the previous one. In this example, the text inputs of our forms were unusable due to rendering lags. We understand that the `CarCard` component may be the source of the problem.
 
 # Common pitfalls
+Our mistake was to compute the `car` property of `<CarCard car={...} />` by creating an new object from our Redux store. Every time the store is updated, a new `car` object is created and the pure component `<CarCard car={car} />` is re-rendered. Indeed, to decide if a pure component should update, React compares its properties according to the `===` equality. By creating new car objects, we create different objects according to `===` even if the values of the fields are the same.
+
+As a solution, we could replace the shallow equality on props `===` with a deep equality such as Lodash's [`_.isEqual`](https://lodash.com/docs#isEqual). However, this equality can be slow to compute as it is proportional to the size of the properties. A better solution is to somehow memoize the car properties, to prevent the creation of identical car objects. Some libraries such as [Reselect](https://github.com/rackt/reselect) are made exactly for that. React itself is also a great memoization library, for both the DOM and the props.
